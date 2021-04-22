@@ -33,11 +33,20 @@ def normalize_labels(labels):
     labels_np = np.array(labels)
     return labels_np / labels_np.sum()
 
-def getImageQuality(image, modelName):
+def loadAndPreprocessImage(images):
     # Load and preprocess image
-    image = utils.load_image(imagePath, target_size=(224, 224))
-    image = keras.applications.mobilenet.preprocess_input(image)
+    print("Load and Pre Process Nima Images")
+    i = 0
+    j = len(images)
+    for image in images:
+        print("(" + str(i+1) + " / " + str(j) + ")", end="\r")
+        img = utils.load_image(image["path"], target_size=(224, 224))
+        image["img"] = keras.applications.mobilenet.preprocess_input(img)
+        i = i + 1
+    print("\n")
+    return images
 
+def getImageQuality(image, modelName):
     # Run through model
     target = f'{TFS_HOST}:{TFS_PORT}'
     channel = grpc.insecure_channel(target)
@@ -52,5 +61,5 @@ def getImageQuality(image, modelName):
 
     response = stub.Predict(request, 10.0)
     result = round(calc_mean_score(response.outputs['quality_prediction'].float_val), 2)
-    return result
     # print(json.dumps({'mean_score_prediction': np.round(result, 3)}, indent=2))
+    return result
