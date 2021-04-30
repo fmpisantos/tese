@@ -73,8 +73,11 @@ class ThreadWithReturnValue(Thread):
         return self._return
 
 
-def orderList(l, key):
-    return sorted(l, key=lambda x: x[key], reverse=True)
+def orderList(l, key, key1=False, key2=False, percent=0.5):
+    if key:
+        return sorted(l, key=lambda x: percent * x[key1] + x[key2] * (1-percent), reverse=True)
+    else:
+        return sorted(l, key=lambda x: x[key1], reverse=True)
 
 
 def writeToFile(data, path):

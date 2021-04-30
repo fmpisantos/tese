@@ -1,6 +1,16 @@
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
+from keras.preprocessing import image
+# from keras.applications.vgg16 import VGG16
+# from keras.applications.vgg16 import preprocess_input
+from keras.applications.vgg19 import VGG19
+from keras.applications.vgg19 import preprocess_input
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.cluster import DBSCAN
+import os, shutil, glob, os.path
+from PIL import Image as pil_image
 
 def compareImages(img1,img2):
     # Initiate ORB detector
@@ -9,7 +19,7 @@ def compareImages(img1,img2):
     kp1, des1 = orb.detectAndCompute(img1,None)
     kp2, des2 = orb.detectAndCompute(img2,None)
     
-    matcher = cv.BFMatcher()
+    matcher = cv.BFMatcher(cv.NORM_HAMMING, crossCheck=True)
     matches = matcher.match(des1,des2)
     # containing both the images the drawMatches()
     # function takes both images and keypoints
@@ -27,7 +37,7 @@ def compareImages(img1,img2):
 
 def describeWOrb(images):
     orb = cv.ORB_create()
-    detector = cv.ORB(13000)
+    detector = cv.ORB()
     features = []
     for im in images:
         kp1, des1 = orb.detectAndCompute(im["frame"],None)
@@ -67,16 +77,9 @@ def groupImages(images,threshold):
                 groups.append([im])
     return groups
 
-def kerasClustering(path, output): 
-    from keras.preprocessing import image
-    from keras.applications.vgg16 import VGG16
-    from keras.applications.vgg16 import preprocess_input
-    import numpy as np
-    from sklearn.cluster import KMeans
-    import os, shutil, glob, os.path
-    from PIL import Image as pil_image
+def kerasClustering(images, path, output): 
     image.LOAD_TRUNCATED_IMAGES = True 
-    model = VGG16(weights='imagenet', include_top=False)
+    model = VGG19(weights='imagenet', include_top=False)
 
     # Variables
     imdir = path
@@ -84,12 +87,14 @@ def kerasClustering(path, output):
     number_clusters = 5
 
     # Loop over files and get features
-    filelist = glob.glob(os.path.join(imdir, '*.jpg'))
-    filelist.sort()
+    #filelist = glob.glob(os.path.join(imdir, '*.jpg'))
+    #filelist.sort()
     featurelist = []
-    for i, imagepath in enumerate(filelist):
-        print("    Status: %s / %s" %(i, len(filelist)), end="\r")
-        img = image.load_img(imagepath, target_size=(224, 224))
+    for i, im in enumerate(images):
+    # for i, imagepath in enumerate(filelist):
+        print("    Status: %s / %s" %(i, len(images)), end="\r")
+        #img = image.load_img(imagepath, target_size=(224, 224))
+        img = im["img"]
         img_data = image.img_to_array(img)
         img_data = np.expand_dims(img_data, axis=0)
         img_data = preprocess_input(img_data)
@@ -97,7 +102,9 @@ def kerasClustering(path, output):
         featurelist.append(features.flatten())
 
     # Clustering
-    kmeans = KMeans(n_clusters=number_clusters, random_state=0).fit(np.array(featurelist))
+    clustered = KMeans(n_clusters=number_clusters, random_state=0).fit(np.array(featurelist))
+
+    #clustered = DBSCAN(eps=0.5,metric='euclidean', min_samples=2).fit(np.array(featurelist))
 
     # Copy images renamed by cluster 
     # Check if target dir exists
@@ -107,6 +114,6 @@ def kerasClustering(path, output):
         pass
     # Copy with cluster name
     print("\n")
-    for i, m in enumerate(kmeans.labels_):
-        print("    Copy: %s / %s" %(i, len(kmeans.labels_)), end="\r")
-        shutil.copy(filelist[i], targetdir + "/" + str(m) + "_" + str(i) + ".jpg")
+    for i, m in enumerate(clustered.labels_):
+        print("    Copy: %s / %s" %(i, len(clustered.labels_)), end="\r")
+        shutil.copy(path + '/' + images[i]["image_id"], targetdir + "/" + str(m) + "_" + str(i) + ".jpg")

@@ -7,6 +7,11 @@ import time
 import imquality.brisque as brisque
 import PIL.Image
 from multiprocessing import Pool
+from os import listdir, path
+from os.path import isfile, join
+import SlideshowMaker as sl
+import utils as util
+import matplotlib.pyplot as plt
 
 def multipleBrisque(imagesArray):
     brisq = BRISQUE()
@@ -67,3 +72,80 @@ def cvbrisque(imgArr):
         i = i + 1
     print("\n")
     return imgArr
+
+def doMedia(arr,i):
+    for obj in arr:
+        obj = obj/i
+    return arr
+
+def testBrisque(outputPath):
+    toTest = path.abspath("./Photos/TecnicalChangedByTheme")
+    folders = ["cidade", "fotogrupo", "objecto", "paisagem", "retrato"]
+    folderTypes = ["blur", "noise", "underExposure", "overExposure"]
+    images = []
+    for t in folderTypes:
+        for folder in folders:
+            p = "%s/%s/%s/"%(toTest,folder,t)
+            for f in listdir(p):
+                if isfile(join(p, f)):
+                    images.append({
+                        "path": "%s%s"%(p,f),
+                        "image_id": f,
+                        "type": t,
+                        "group": folder
+                        })
+                    print("%s%s"%(p,f))
+    images, w, h = sl.loadCV2Img(images,True,25)
+    images = brisqueThread(images)
+    images = util.orderList(images,False,"brisque", "")
+    util.writeToFile([{
+        "brisque": key["brisque"], 
+        "image_id":key["image_id"], 
+        "imagePath": "file://"+ key["path"],
+        "type": key["type"],
+        "group": key["group"],
+        "intensity": key["image_id"].split(".jp")[0]
+        }for key in images], outputPath+"/"+"brisque"+".json")
+
+    for tt in folderTypes:
+        cidade = [0] * 6
+        fotogrupo = [0] * 6
+        objecto = [0] * 6
+        paisagem = [0] * 6
+        retrato = [0] * 6
+        media = [0] * 6
+        i = 0
+        for t in [{
+            "image_id": d["image_id"],
+            "brisque": d["brisque"],
+            "type": d["type"],
+            "group": d["group"],
+            "intensity": d["image_id"].split(".jp")[0]
+            } for d in images if d["type"] == tt]:
+                index = int(int(t["intensity"])/2)
+                if t["group"] == folders[0]:
+                    i = i + 1
+                    cidade[index] = t["brisque"]
+                if t["group"] == folders[1]:
+                    fotogrupo[index] = t["brisque"]
+                if t["group"] == folders[2]:
+                    objecto[index] = t["brisque"]
+                if t["group"] == folders[3]:
+                    paisagem[index] = t["brisque"]
+                if t["group"] == folders[4]:
+                    retrato[index] = t["brisque"]
+                media[index] = t["brisque"]
+        media = doMedia(media, i)
+        c1, = plt.plot(cidade, label=folders[0])
+        f1, = plt.plot(fotogrupo, label=folders[1])
+        o1, = plt.plot(objecto, label=folders[2])
+        p1, = plt.plot(paisagem, label=folders[3])
+        r1, = plt.plot(retrato, label=folders[4])
+        m1, = plt.plot(media, label="media")
+        plt.legend(handles=[c1, f1, o1, p1, r1, m1])
+        #plt.show()
+        plt.savefig('%s.png'%(tt))
+        plt.close("all")
+    
+testBrisque(path.abspath("./Photos/TecnicalChangedByTheme/Result"))
+

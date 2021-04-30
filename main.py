@@ -1,5 +1,6 @@
 import SlideshowMaker as sl
 from os import listdir, path, remove
+import os, shutil
 import nima as nima
 import json
 from threading import Thread
@@ -21,6 +22,7 @@ original = path.abspath("./Photos/original")
 outputPath = path.abspath("./output")
 tecnicalChanged = path.abspath("./Photos/TecnicalChanged")
 kerasOutput = path.abspath("./outputPath/")
+orbOutput = path.abspath("./orboutput/")
 
 # Slideshow variables:
 # fps = frames per second
@@ -87,30 +89,37 @@ def mainNima(model, string, string2order, path):
         i = i + 1
     print("\n")
     # Order images based on aesthetics
-    images = util.orderList(images, string2order)
+    images = util.orderList(images,False,string2order, string)
     # Get images for slideshow
     totalNumberOfFrames = nImages * (tF+imgF)-(tF*2)
     images, w, h = sl.loadCV2Img(images)
     images = resize2(images, w, h)
+    print("Image clustering:")
+    kerasClustering(images,path,kerasOutput)
     # Generate slideshow
     sl.write_video(outputPath + "/out.mp4",
                    images[:nImages], w, h, totalNumberOfFrames, fps, tF, imgF)
     util.writeToFile([{string2order: key[string2order], "image_id":key["image_id"], "imagePath": "file://" + path + "/" + key["image_id"]}for key in images], outputPath+"/"+string2order+".json")
+    print('Saving image quality eval to : ' + outputPath+"/"+string2order+".json")
 
 
-def mainClustering(path):
+def mainClustering(path,targetdir):
     imgF, tF, images = util.createSlideShow(True,path)
     images = nima.loadAndPreprocessImage(images)
     images, w, h = sl.loadCV2Img(images,True,25)
-    groups = groupImages(images, 0.1)
+    groups = groupImages(images, 0.075)
     i = 1
+    try:
+        os.makedirs(targetdir)
+    except OSError:
+        pass
     for group in groups:
         if(len(group) > 1):
             print("Group " + str(i))
             i = i + 1
             for im in group:
                 print(im["image_id"])
-
+                shutil.copy(path + "/" + im["image_id"], targetdir + "/" + str(i) + "_" + im["image_id"] + ".jpg")
     util.writeToFile([[{"imagePath": "file://" + path + "/" + key["image_id"]}for key in group] for group in groups], outputPath+"/clustering.json")
 
 
@@ -131,8 +140,9 @@ if __name__ == "__main__":
     tSec = args.tSec
     nImages = args.nImages
     # Main with nima + brisque -- ordered by brisqye
-    # mainNima(models[1], "tecnical", "brisque", tecnicalChanged)
+    mainNima(models[0], "aesthetic", "brisque", original)
+    # mainNima(models[0], "aesthetic", "brisque", tecnicalChanged)
     # Main to test clustering 
-    # mainClustering(original)
+    # mainClustering(original,orbOutput)
 
-    kerasClustering(original,kerasOutput)
+    #kerasClustering(original,kerasOutput)
