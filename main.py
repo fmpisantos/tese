@@ -10,6 +10,7 @@ from myresize import resize2
 from clustering import groupImages, kerasClustering
 import utils as util
 import time
+import visonApi as visonApi
 
 import brisque2 as bq
 
@@ -96,10 +97,12 @@ def mainNima(model, string, string2order, path):
     images = resize2(images, w, h)
     print("Image clustering:")
     kerasClustering(images,path,kerasOutput)
+    print("Image object identification:")
+    visionApi.identifyObjects(path,images)
     # Generate slideshow
     sl.write_video(outputPath + "/out.mp4",
                    images[:nImages], w, h, totalNumberOfFrames, fps, tF, imgF)
-    util.writeToFile([{string2order: key[string2order], "image_id":key["image_id"], "imagePath": "file://" + path + "/" + key["image_id"]}for key in images], outputPath+"/"+string2order+".json")
+    util.writeToFile([{string2order: key[string2order], "objects": key["objects"], "image_id":key["image_id"], "imagePath": "file://" + path + "/" + key["image_id"]}for key in images], outputPath+"/"+string2order+".json")
     print('Saving image quality eval to : ' + outputPath+"/"+string2order+".json")
 
 
