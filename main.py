@@ -10,7 +10,7 @@ from myresize import resize2
 from clustering import groupImages, kerasClustering
 import utils as util
 import time
-import visonApi as visonApi
+import visonApi
 
 import brisque2 as bq
 
@@ -65,11 +65,13 @@ def mainNimaThreads(path):
 
 
 def mainNima(model, string, string2order, path):
+    print(path)
     # Get images path & generate slideshow information
     imgF, tF, images = util.createSlideShow(True,path)
     # Get images for Nima
     images = nima.loadAndPreprocessImage(images)
     images, w, h = sl.loadCV2Img(images,True,25)
+    print("Here main\n")
     # Run Nima
     print("Get image quality")
     i = 0
@@ -95,10 +97,10 @@ def mainNima(model, string, string2order, path):
     totalNumberOfFrames = nImages * (tF+imgF)-(tF*2)
     images, w, h = sl.loadCV2Img(images)
     images = resize2(images, w, h)
-    print("Image clustering:")
-    kerasClustering(images,path,kerasOutput)
+    #print("Image clustering:")
+    #kerasClustering(images,path,kerasOutput)
     print("Image object identification:")
-    visionApi.identifyObjects(path,images)
+    visonApi.identifyObjects(path,images)
     # Generate slideshow
     sl.write_video(outputPath + "/out.mp4",
                    images[:nImages], w, h, totalNumberOfFrames, fps, tF, imgF)

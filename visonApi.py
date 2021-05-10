@@ -14,7 +14,7 @@ def localize_objects(path):
 
     objects = client.object_localization(
         image=image).localized_object_annotations
-    return [o.name for o in objects]
+    return list(set([o.name for o in objects]))
 
     '''print('Number of objects found: {}'.format(len(objects)))
     for object_ in objects:

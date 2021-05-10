@@ -74,8 +74,10 @@ def cvbrisque(imgArr):
     return imgArr
 
 def doMedia(arr,i):
-    for obj in arr:
-        obj = obj/i
+    print(arr)
+    for idx,obj in enumerate(arr):
+        arr[idx] = obj/i
+    print(arr)
     return arr
 
 def testBrisque(outputPath):
@@ -122,6 +124,7 @@ def testBrisque(outputPath):
             "group": d["group"],
             "intensity": d["image_id"].split(".jp")[0]
             } for d in images if d["type"] == tt]:
+                print(t["image_id"])
                 index = int(int(t["intensity"])/2)
                 if t["group"] == folders[0]:
                     i = i + 1
@@ -134,7 +137,7 @@ def testBrisque(outputPath):
                     paisagem[index] = t["brisque"]
                 if t["group"] == folders[4]:
                     retrato[index] = t["brisque"]
-                media[index] = t["brisque"]
+                media[index] = media[index] + t["brisque"]
         media = doMedia(media, i)
         c1, = plt.plot(cidade, label=folders[0])
         f1, = plt.plot(fotogrupo, label=folders[1])
@@ -147,5 +150,5 @@ def testBrisque(outputPath):
         plt.savefig('%s.png'%(tt))
         plt.close("all")
     
-testBrisque(path.abspath("./Photos/TecnicalChangedByTheme/Result"))
+# testBrisque(path.abspath("./Photos/TecnicalChangedByTheme/Result"))
 
