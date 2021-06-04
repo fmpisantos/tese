@@ -1,0 +1,2 @@
+https://github.com/idealo/image-quality-assessment
+https://github.com/krshrimali/No-Reference-Image-Quality-Assessment-using-BRISQUE-Model/

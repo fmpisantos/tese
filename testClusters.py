@@ -145,8 +145,9 @@ def SVM(groups, X, y, test, tmpGroup):
     labels = clf.predict(test)
     for idx, lbl in enumerate(labels):
         for group in groups:
-            if group[0]["idx"] == lbl:
+            if group[0]["group"] == lbl:
                 group.append(tmpGroup[idx])
+    return groups
 
 
 def treatFails(groups):
@@ -155,15 +156,18 @@ def treatFails(groups):
     test = list()
     tmpGroup = list()
     # Preparing data to new cluster
-    for group in groups:
+    i = False
+    for idx,group in enumerate(groups):
         for img in group:
             if img["group"] == "-1":
+                i = idx
                 test.append(preparedImages[img["idx"]])
                 tmpGroup.append(img)
-                group.remove(img)
+                #group.remove(img)
             else:
                 train_x.append(preparedImages[img["idx"]])
                 train_y.append(img["group"])
+    groups.remove(groups[i])
     SVM(groups, train_x, train_y, test, tmpGroup)
     return groups
 
@@ -178,9 +182,9 @@ def testOrganizationByLabelsAndObjects():
         prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")
 
 
-# objects, labels, images = loadArrays()
+objects, labels, images = loadArrays()
 # util.writeToFile(groupByLabel(images,MeanShift(prepareData(objects,"objects",images),images)), f"{outputPath}/meanshift.json")
 # util.writeToFile(groupByLabel(images,DBScan(prepareData(objects,"objects",images),images)), f"{outputPath}/dbscan.json")
 # util.writeToFile(groupByLabel(images,Optics(prepareData(labels,"labels",images),images)), f"{outputPath}/optics.json")
-# fromGroupToHtml(groupByLabel(images,Optics(prepareData(labels,"labels",images),images)),f"{outputPath}/optics.html")
-# fromGroupToHtml(treatFails(groupByLabel(images, Optics(prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")
+# fromGroupToHtml(groupByLabel(images,Optics(prepareDataCombined(objects,labels,images),images)),f"{outputPath}/optics-old.html")
+fromGroupToHtml(treatFails(groupByLabel(images, Optics(prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")
