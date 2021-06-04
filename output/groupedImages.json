@@ -19,7 +19,8 @@
             "Outdoor furniture - 0.8782001733779907"
         ],
         "image_id": "img_0581.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0581.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0581.jpg",
+        "group": "0"
     },
     {
         "brisque": 21.913858906375225,
@@ -37,7 +38,8 @@
             "Plant - 0.7515025734901428"
         ],
         "image_id": "img_0575.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0575.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0575.jpg",
+        "group": "0"
     },
     {
         "brisque": 21.021891938154653,
@@ -60,7 +62,8 @@
             "Calf - 0.8219088912010193"
         ],
         "image_id": "img_0543.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0543.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0543.jpg",
+        "group": "1"
     },
     {
         "brisque": 20.909424254442996,
@@ -81,7 +84,8 @@
             "Body of water - 0.8339743614196777"
         ],
         "image_id": "img_0580.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0580.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0580.jpg",
+        "group": "0"
     },
     {
         "brisque": 20.655404896568683,
@@ -103,7 +107,8 @@
             "Goggles - 0.8367122411727905"
         ],
         "image_id": "img_0582.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0582.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0582.jpg",
+        "group": "0"
     },
     {
         "brisque": 20.429173059549242,
@@ -126,7 +131,8 @@
             "Cap - 0.6753742694854736"
         ],
         "image_id": "img_0586.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0586.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0586.jpg",
+        "group": "2"
     },
     {
         "brisque": 20.209443820597556,
@@ -147,7 +153,8 @@
             "Floor - 0.8296620845794678"
         ],
         "image_id": "img_0609.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0609.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0609.jpg",
+        "group": "5"
     },
     {
         "brisque": 17.277097423397635,
@@ -169,7 +176,8 @@
             "Pattern - 0.71843022108078"
         ],
         "image_id": "img_0610.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0610.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0610.jpg",
+        "group": "1"
     },
     {
         "brisque": 14.539772791517834,
@@ -191,7 +199,8 @@
             "People on beach - 0.8463457822799683"
         ],
         "image_id": "img_0594.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0594.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0594.jpg",
+        "group": "0"
     },
     {
         "brisque": 13.739159801052523,
@@ -213,7 +222,8 @@
             "Natural environment - 0.8897138237953186"
         ],
         "image_id": "img_0593.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0593.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0593.jpg",
+        "group": "0"
     },
     {
         "brisque": 13.464220320417525,
@@ -233,7 +243,8 @@
             "Wood - 0.8653674721717834"
         ],
         "image_id": "img_0598.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0598.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0598.jpg",
+        "group": "0"
     },
     {
         "brisque": 12.704974163968785,
@@ -254,7 +265,8 @@
             "Horizon - 0.7877723574638367"
         ],
         "image_id": "img_0599.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0599.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0599.jpg",
+        "group": "0"
     },
     {
         "brisque": 12.465445151626653,
@@ -275,7 +287,8 @@
             "Travel - 0.8326894640922546"
         ],
         "image_id": "3A410545-B179-4F6F-B22E-782B0319862E.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/3A410545-B179-4F6F-B22E-782B0319862E.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/3A410545-B179-4F6F-B22E-782B0319862E.jpg",
+        "group": "0"
     },
     {
         "brisque": 12.067849465344665,
@@ -296,7 +309,8 @@
             "Horizon - 0.812444806098938"
         ],
         "image_id": "img_0597.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0597.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0597.jpg",
+        "group": "0"
     },
     {
         "brisque": 11.56378631709876,
@@ -317,7 +331,8 @@
             "Travel - 0.8226705193519592"
         ],
         "image_id": "IMG_0596.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/IMG_0596.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/IMG_0596.jpg",
+        "group": "0"
     },
     {
         "brisque": 11.462848544748766,
@@ -338,7 +353,8 @@
             "Travel - 0.8261111974716187"
         ],
         "image_id": "img_0595.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0595.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0595.jpg",
+        "group": "0"
     },
     {
         "brisque": 9.666466288552868,
@@ -362,7 +378,8 @@
             "Tin can - 0.7505106925964355"
         ],
         "image_id": "img_0588.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0588.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0588.jpg",
+        "group": "0"
     },
     {
         "brisque": 8.799598008768811,
@@ -385,7 +402,8 @@
             "Sun hat - 0.7925829887390137"
         ],
         "image_id": "img_0590.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0590.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0590.jpg",
+        "group": "2"
     },
     {
         "brisque": 8.2528939467297,
@@ -407,7 +425,8 @@
             "Leisure - 0.7767283320426941"
         ],
         "image_id": "img_0589.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0589.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0589.jpg",
+        "group": "0"
     },
     {
         "brisque": 7.1945484911251185,
@@ -428,7 +447,8 @@
             "Sunglasses - 0.9048921465873718"
         ],
         "image_id": "1EC85062-B63D-43D2-A470-77AE8DF6EE1B.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/1EC85062-B63D-43D2-A470-77AE8DF6EE1B.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/1EC85062-B63D-43D2-A470-77AE8DF6EE1B.jpg",
+        "group": "0"
     },
     {
         "brisque": 5.677896724979263,
@@ -451,7 +471,8 @@
             "Beach - 0.8742848634719849"
         ],
         "image_id": "img_0600.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0600.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0600.jpg",
+        "group": "0"
     },
     {
         "brisque": 5.018294854002278,
@@ -474,7 +495,8 @@
             "Cool - 0.8201536536216736"
         ],
         "image_id": "img_0592.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0592.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0592.jpg",
+        "group": "0"
     },
     {
         "brisque": 4.856295265957868,
@@ -496,7 +518,8 @@
             "Vision care - 0.9007045030593872"
         ],
         "image_id": "img_0605.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0605.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0605.jpg",
+        "group": "0"
     },
     {
         "brisque": 4.687535481275489,
@@ -519,7 +542,8 @@
             "Street fashion - 0.8639829754829407"
         ],
         "image_id": "img_0583.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0583.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0583.jpg",
+        "group": "0"
     },
     {
         "brisque": 4.266702118378902,
@@ -541,7 +565,8 @@
             "Vision care - 0.9216231107711792"
         ],
         "image_id": "img_0601.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0601.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0601.jpg",
+        "group": "0"
     },
     {
         "brisque": 3.9740393455871015,
@@ -565,7 +590,8 @@
             "Beach - 0.8740459680557251"
         ],
         "image_id": "img_0604.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0604.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0604.jpg",
+        "group": "3"
     },
     {
         "brisque": 3.9434290173198576,
@@ -587,7 +613,8 @@
             "Flash photography - 0.8584300875663757"
         ],
         "image_id": "img_0603.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0603.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0603.jpg",
+        "group": "0"
     },
     {
         "brisque": 3.495338064155675,
@@ -610,7 +637,8 @@
             "Eyewear - 0.8985487818717957"
         ],
         "image_id": "img_0591.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0591.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0591.jpg",
+        "group": "0"
     },
     {
         "brisque": 3.249231558755781,
@@ -632,7 +660,8 @@
             "Sleeve - 0.8724486827850342"
         ],
         "image_id": "img_0602.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0602.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0602.jpg",
+        "group": "0"
     },
     {
         "brisque": 1.5778014234940372,
@@ -655,7 +684,8 @@
             "Vision care - 0.9041972756385803"
         ],
         "image_id": "img_0606.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0606.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0606.jpg",
+        "group": "0"
     },
     {
         "brisque": 1.573202729582107,
@@ -677,7 +707,8 @@
             "Gesture - 0.852604866027832"
         ],
         "image_id": "img_0584.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0584.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0584.jpg",
+        "group": "0"
     },
     {
         "brisque": 0.48642363250016274,
@@ -703,7 +734,8 @@
             "Flooring - 0.798163115978241"
         ],
         "image_id": "img_0608.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0608.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0608.jpg",
+        "group": "4"
     },
     {
         "brisque": -2.078566993459191,
@@ -725,7 +757,8 @@
             "Mouth - 0.9189326167106628"
         ],
         "image_id": "img_0577.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0577.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0577.jpg",
+        "group": "0"
     },
     {
         "brisque": -2.775920520161236,
@@ -746,7 +779,8 @@
             "Goggles - 0.916740357875824"
         ],
         "image_id": "img_0576.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0576.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0576.jpg",
+        "group": "0"
     },
     {
         "brisque": -10.213492044607875,
@@ -768,7 +802,8 @@
             "Mouth - 0.9108636379241943"
         ],
         "image_id": "img_0578.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0578.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0578.jpg",
+        "group": "0"
     },
     {
         "brisque": -11.600594110302524,
@@ -790,6 +825,7 @@
             "Travel - 0.8410719633102417"
         ],
         "image_id": "img_0579.jpg",
-        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0579.jpg"
+        "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0579.jpg",
+        "group": "0"
     }
 ]

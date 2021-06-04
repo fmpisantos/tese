@@ -1,12 +1,13 @@
 [
     {
+       "aesthetic": 50,
         "brisque": 21.95725208397218,
-        "objects": [
+        "objects-score": [
             "Bench - 0.7809576988220215",
             "Table - 0.7628320455551147",
             "Lighting - 0.5190588235855103"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9724223613739014",
             "Sky - 0.9669997692108154",
             "Daytime - 0.9446064829826355",
@@ -22,9 +23,10 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0581.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 21.913858906375225,
-        "objects": [],
-        "labels": [
+        "objects-score": [],
+        "labels-score": [
             "Water - 0.975780725479126",
             "Sky - 0.9553546905517578",
             "Fluid - 0.8704184293746948",
@@ -40,14 +42,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0575.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 21.021891938154653,
-        "objects": [
+        "objects-score": [
             "Shoe - 0.9446922540664673",
             "Jeans - 0.8564912676811218",
             "Person - 0.775489091873169",
             "Footwear - 0.5748631358146667"
         ],
-        "labels": [
+        "labels-score": [
             "Shoe - 0.9570796489715576",
             "Outerwear - 0.9527220129966736",
             "Leg - 0.9368957877159119",
@@ -63,12 +66,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0543.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 20.909424254442996,
-        "objects": [
+        "objects-score": [
             "Table - 0.8112580180168152",
             "Bench - 0.5321511626243591"
         ],
-        "labels": [
+        "labels-score": [
             "Sky - 0.973103404045105",
             "Water - 0.9678414463996887",
             "Outdoor bench - 0.9081783890724182",
@@ -84,13 +88,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0580.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 20.655404896568683,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9159025549888611",
             "Person - 0.9079581499099731",
             "Outerwear - 0.8517545461654663"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.9828906059265137",
             "Glasses - 0.9792036414146423",
             "Vision care - 0.953903079032898",
@@ -106,14 +111,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0582.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 20.429173059549242,
-        "objects": [
+        "objects-score": [
             "Person - 0.9129232168197632",
             "Clothing - 0.6408630013465881",
             "Table top - 0.6112492680549622",
             "Top - 0.5231776833534241"
         ],
-        "labels": [
+        "labels-score": [
             "Wood - 0.8108400106430054",
             "Leisure - 0.8047816753387451",
             "Roof - 0.7503567934036255",
@@ -129,12 +135,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0586.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 20.209443820597556,
-        "objects": [
+        "objects-score": [
             "Shoe - 0.9238610863685608",
             "Pants - 0.8413203954696655"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9508757591247559",
             "Leg - 0.9179388284683228",
             "Wood - 0.8969669342041016",
@@ -150,13 +157,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0609.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 17.277097423397635,
-        "objects": [
+        "objects-score": [
             "Shoe - 0.8633456230163574",
             "Person - 0.7733500003814697",
             "Footwear - 0.5480205416679382"
         ],
-        "labels": [
+        "labels-score": [
             "Joint - 0.9744052886962891",
             "Shoe - 0.9484472870826721",
             "Wood - 0.8897546529769897",
@@ -172,13 +180,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0610.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 14.539772791517834,
-        "objects": [
+        "objects-score": [
             "Person - 0.8925595879554749",
             "Pants - 0.6961411833763123",
             "Outerwear - 0.5848474502563477"
         ],
-        "labels": [
+        "labels-score": [
             "Cloud - 0.9807246327400208",
             "Water - 0.9761064052581787",
             "Sky - 0.97600257396698",
@@ -194,13 +203,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0594.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 13.739159801052523,
-        "objects": [
+        "objects-score": [
             "Person - 0.9089507460594177",
             "Pants - 0.6876436471939087",
             "Jeans - 0.558597207069397"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9800076484680176",
             "Cloud - 0.9778995513916016",
             "Sky - 0.9733891487121582",
@@ -216,11 +226,12 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0593.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 13.464220320417525,
-        "objects": [
+        "objects-score": [
             "Outerwear - 0.8612290024757385"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9786034822463989",
             "Cloud - 0.9756816625595093",
             "Sky - 0.9733843207359314",
@@ -236,12 +247,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0598.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 12.704974163968785,
-        "objects": [
+        "objects-score": [
             "Outerwear - 0.877589762210846",
             "Person - 0.8656638264656067"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9796931743621826",
             "Cloud - 0.9794533848762512",
             "Sky - 0.9724097847938538",
@@ -257,12 +269,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0599.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 12.465445151626653,
-        "objects": [
+        "objects-score": [
             "Person - 0.8865086436271667",
             "Outerwear - 0.8835384845733643"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9812811613082886",
             "Cloud - 0.9771807789802551",
             "Sky - 0.9709809422492981",
@@ -278,12 +291,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/3A410545-B179-4F6F-B22E-782B0319862E.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 12.067849465344665,
-        "objects": [
+        "objects-score": [
             "Outerwear - 0.8834609389305115",
             "Person - 0.8752522468566895"
         ],
-        "labels": [
+        "labels-score": [
             "Cloud - 0.9794373512268066",
             "Water - 0.9792104959487915",
             "Sky - 0.9740250706672668",
@@ -299,12 +313,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0597.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 11.56378631709876,
-        "objects": [
+        "objects-score": [
             "Person - 0.8928505182266235",
             "Outerwear - 0.8267068862915039"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9788015484809875",
             "Cloud - 0.9782861471176147",
             "Sky - 0.9729086756706238",
@@ -320,12 +335,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/IMG_0596.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 11.462848544748766,
-        "objects": [
+        "objects-score": [
             "Person - 0.8426297903060913",
             "Pants - 0.627146303653717"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9790801405906677",
             "Cloud - 0.9746304154396057",
             "Sky - 0.970156192779541",
@@ -341,15 +357,16 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0595.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 9.666466288552868,
-        "objects": [
+        "objects-score": [
             "Person - 0.803277850151062",
             "Packaged goods - 0.7952516674995422",
             "Tableware - 0.6348058581352234",
             "Glasses - 0.5932599306106567",
             "Drink - 0.5018972158432007"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.9832649827003479",
             "Goggles - 0.9109516739845276",
             "Sunglasses - 0.9026568531990051",
@@ -365,14 +382,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0588.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 8.799598008768811,
-        "objects": [
+        "objects-score": [
             "Tableware - 0.7559482455253601",
             "Person - 0.7551910281181335",
             "Table top - 0.5965086221694946",
             "Glasses - 0.5239481329917908"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.9748460054397583",
             "Glasses - 0.9667192697525024",
             "Goggles - 0.9014692902565002",
@@ -388,13 +406,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0590.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 8.2528939467297,
-        "objects": [
+        "objects-score": [
             "Person - 0.8841192126274109",
             "Tableware - 0.7286027669906616",
             "Sunglasses - 0.6354537010192871"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.9795512557029724",
             "Daytime - 0.9441382884979248",
             "Hat - 0.8962413668632507",
@@ -410,12 +429,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0589.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 7.1945484911251185,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9609867930412292",
             "Person - 0.9053395986557007"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.9847725033760071",
             "Glasses - 0.9796656966209412",
             "Skin - 0.9758075475692749",
@@ -431,14 +451,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/1EC85062-B63D-43D2-A470-77AE8DF6EE1B.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 5.677896724979263,
-        "objects": [
+        "objects-score": [
             "Person - 0.8945008516311646",
             "Outerwear - 0.8644504547119141",
             "Scarf - 0.6630977988243103",
             "Glasses - 0.5249478220939636"
         ],
-        "labels": [
+        "labels-score": [
             "Face - 0.983273983001709",
             "Glasses - 0.9764299988746643",
             "Smile - 0.9719454050064087",
@@ -454,14 +475,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0600.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 5.018294854002278,
-        "objects": [
+        "objects-score": [
             "Person - 0.9024777412414551",
             "Sunglasses - 0.8566907644271851",
             "Outerwear - 0.6337151527404785",
             "Glasses - 0.5727503299713135"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9757572412490845",
             "Smile - 0.9596201777458191",
             "Vision care - 0.9561328291893005",
@@ -477,13 +499,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0592.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 4.856295265957868,
-        "objects": [
+        "objects-score": [
             "Person - 0.9127010703086853",
             "Outerwear - 0.8653630018234253",
             "Scarf - 0.8174221515655518"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9760966897010803",
             "Water - 0.9709188938140869",
             "Sky - 0.9634127616882324",
@@ -499,14 +522,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0605.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 4.687535481275489,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9450243711471558",
             "Person - 0.9235050082206726",
             "Outerwear - 0.8509154915809631",
             "Grooming trimmer - 0.6341276168823242"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9787603616714478",
             "Smile - 0.9629701972007751",
             "Hand - 0.9595038294792175",
@@ -522,13 +546,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0583.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 4.266702118378902,
-        "objects": [
+        "objects-score": [
             "Person - 0.8761371970176697",
             "Outerwear - 0.8588024377822876",
             "Scarf - 0.593636691570282"
         ],
-        "labels": [
+        "labels-score": [
             "Face - 0.9832951426506042",
             "Glasses - 0.9800741672515869",
             "Water - 0.9796169400215149",
@@ -544,15 +569,16 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0601.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 3.9740393455871015,
-        "objects": [
+        "objects-score": [
             "Person - 0.9055255651473999",
             "Scarf - 0.8879135251045227",
             "Luggage & bags - 0.8024691939353943",
             "Footwear - 0.7514424324035645",
             "Shoe - 0.6669059991836548"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9824168086051941",
             "Water - 0.9704492092132568",
             "Sky - 0.9654180407524109",
@@ -568,13 +594,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0604.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 3.9434290173198576,
-        "objects": [
+        "objects-score": [
             "Person - 0.9073530435562134",
             "Pants - 0.6921430826187134",
             "Luggage & bags - 0.6018523573875427"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9781643152236938",
             "Sky - 0.9693778157234192",
             "Cloud - 0.9363409876823425",
@@ -590,14 +617,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0603.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 3.495338064155675,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.934249222278595",
             "Person - 0.8792032599449158",
             "Glasses - 0.5460301637649536",
             "Outerwear - 0.5178257822990417"
         ],
-        "labels": [
+        "labels-score": [
             "Hair - 0.9827312231063843",
             "Smile - 0.9821015000343323",
             "Glasses - 0.9791354537010193",
@@ -613,13 +641,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0591.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 3.249231558755781,
-        "objects": [
+        "objects-score": [
             "Person - 0.8755946755409241",
             "Outerwear - 0.8487343788146973",
             "Sunglasses - 0.7812316417694092"
         ],
-        "labels": [
+        "labels-score": [
             "Water - 0.9797223210334778",
             "Glasses - 0.9756405353546143",
             "Sky - 0.965244710445404",
@@ -635,14 +664,15 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0602.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 1.5778014234940372,
-        "objects": [
+        "objects-score": [
             "Scarf - 0.9404885172843933",
             "Person - 0.9215759634971619",
             "Outerwear - 0.8476675748825073",
             "Glasses - 0.5341662168502808"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9784928560256958",
             "Cloud - 0.9755023717880249",
             "Water - 0.9742484092712402",
@@ -658,13 +688,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0606.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 1.573202729582107,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9047825336456299",
             "Person - 0.8991706967353821",
             "Outerwear - 0.7958055138587952"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.982412576675415",
             "Skin - 0.9746981859207153",
             "Glasses - 0.9733508229255676",
@@ -680,8 +711,9 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0584.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": 0.48642363250016274,
-        "objects": [
+        "objects-score": [
             "Shoe - 0.8804209232330322",
             "Outerwear - 0.8134467601776123",
             "Person - 0.8101143836975098",
@@ -690,7 +722,7 @@
             "Footwear - 0.6617890000343323",
             "Top - 0.5651625394821167"
         ],
-        "labels": [
+        "labels-score": [
             "Footwear - 0.9819353222846985",
             "Outerwear - 0.9509127140045166",
             "Shoe - 0.948845386505127",
@@ -706,13 +738,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0608.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": -2.078566993459191,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9647679328918457",
             "Person - 0.9025623202323914",
             "Outerwear - 0.7949199676513672"
         ],
-        "labels": [
+        "labels-score": [
             "Hair - 0.9827426075935364",
             "Glasses - 0.9800344109535217",
             "Lip - 0.9700730443000793",
@@ -728,12 +761,13 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0577.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": -2.775920520161236,
-        "objects": [
+        "objects-score": [
             "Person - 0.863940954208374",
             "Sunglasses - 0.8546478748321533"
         ],
-        "labels": [
+        "labels-score": [
             "Smile - 0.9727569818496704",
             "Glasses - 0.9710323214530945",
             "Lip - 0.9701937437057495",
@@ -749,13 +783,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0576.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": -10.213492044607875,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9415335059165955",
             "Person - 0.9087170958518982",
             "Outerwear - 0.8742606043815613"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9803130626678467",
             "Lip - 0.9698033928871155",
             "Outerwear - 0.9533196687698364",
@@ -771,13 +806,14 @@
         "imagePath": "file:///home/awman/Desktop/Shared/Tese/Development/Photos/original/img_0578.jpg"
     },
     {
+       "aesthetic": 50,
         "brisque": -11.600594110302524,
-        "objects": [
+        "objects-score": [
             "Sunglasses - 0.9539058208465576",
             "Person - 0.8996049761772156",
             "Outerwear - 0.8709329962730408"
         ],
-        "labels": [
+        "labels-score": [
             "Glasses - 0.9807617664337158",
             "Smile - 0.9774867296218872",
             "Facial expression - 0.9324292540550232",

@@ -84,3 +84,7 @@ def writeToFile(data, path):
     outfile = open(path, 'w')
     json.dump(data, outfile, indent=4)
     outfile.close()
+
+def loadFromFile(filepath):
+    with open(filepath) as json_file:
+        return json.load(json_file)

@@ -117,3 +117,7 @@ def kerasClustering(images, path, output):
     for i, m in enumerate(clustered.labels_):
         print("    Copy: %s / %s" %(i, len(clustered.labels_)), end="\r")
         shutil.copy(path + '/' + images[i]["image_id"], targetdir + "/" + str(m) + "_" + str(i) + ".jpg")
+
+def groupImagesByLabels(images, labels):
+    print("Grouping Images By Labels")
+    

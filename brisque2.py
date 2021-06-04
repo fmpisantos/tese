@@ -74,10 +74,8 @@ def cvbrisque(imgArr):
     return imgArr
 
 def doMedia(arr,i):
-    print(arr)
     for idx,obj in enumerate(arr):
         arr[idx] = obj/i
-    print(arr)
     return arr
 
 def testBrisque(outputPath):
@@ -96,9 +94,10 @@ def testBrisque(outputPath):
                         "type": t,
                         "group": folder
                         })
-                    print("%s%s"%(p,f))
+                    #print("%s%s"%(p,f))
     images, w, h = sl.loadCV2Img(images,True,25)
-    images = brisqueThread(images)
+    #images = brisqueThread(images)
+    images = score(images)
     images = util.orderList(images,False,"brisque", "")
     util.writeToFile([{
         "brisque": key["brisque"], 
@@ -108,7 +107,7 @@ def testBrisque(outputPath):
         "group": key["group"],
         "intensity": key["image_id"].split(".jp")[0]
         }for key in images], outputPath+"/"+"brisque"+".json")
-
+    medias = list()
     for tt in folderTypes:
         cidade = [0] * 6
         fotogrupo = [0] * 6
@@ -124,7 +123,7 @@ def testBrisque(outputPath):
             "group": d["group"],
             "intensity": d["image_id"].split(".jp")[0]
             } for d in images if d["type"] == tt]:
-                print(t["image_id"])
+                print(t)
                 index = int(int(t["intensity"])/2)
                 if t["group"] == folders[0]:
                     i = i + 1
@@ -139,6 +138,10 @@ def testBrisque(outputPath):
                     retrato[index] = t["brisque"]
                 media[index] = media[index] + t["brisque"]
         media = doMedia(media, i)
+        medias.append({
+            "media": media,
+            "label": tt
+        })
         c1, = plt.plot(cidade, label=folders[0])
         f1, = plt.plot(fotogrupo, label=folders[1])
         o1, = plt.plot(objecto, label=folders[2])
@@ -149,6 +152,14 @@ def testBrisque(outputPath):
         #plt.show()
         plt.savefig('%s.png'%(tt))
         plt.close("all")
+    m0, = plt.plot(medias[0]["media"],label=medias[0]["label"])
+    m1, = plt.plot(medias[1]["media"],label=medias[1]["label"])
+    m2, = plt.plot(medias[2]["media"],label=medias[2]["label"])
+    m3, = plt.plot(medias[3]["media"],label=medias[3]["label"])
     
-# testBrisque(path.abspath("./Photos/TecnicalChangedByTheme/Result"))
+    plt.legend(handles=[m0,m1,m2,m3])
+    plt.savefig('%s.png'%("medias"))
+    plt.close("all")
+    
+#testBrisque(path.abspath("./Photos/TecnicalChangedByTheme/Result"))
 
