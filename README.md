@@ -1,3 +1,9 @@
+How to get Submodules:
+git submodule update --init
+
+Start docker on wsl ?
+sudo dockerd
+
 How to run: 
 0. To reset docker containers:
    ```
