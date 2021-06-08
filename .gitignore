@@ -1,4 +1,6 @@
 Photos/
+bin/
+output/
 *.deb
 include/
 _pycache_
