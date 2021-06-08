@@ -1,7 +1,7 @@
 import cv2
 # from libsvm.python.svmutil import *
 # import libsvm.python.svmutil as svmutil 
-from brisque import BRISQUE
+#from brisque import BRISQUE
 from brisq.Python.libsvm.python import brisquequality as b
 import time
 import imquality.brisque as brisque
