@@ -19,8 +19,11 @@ import time
 # return: {
 #            imgF: frames per image
 #         }
-def generateFramesFromImgTime(img,t,fps):
+
+
+def generateFramesFromImgTime(img, t, fps):
     return int(img*fps), int(t*fps/2)
+
 
 def read_heic(path, filename):
     metadados = []
@@ -59,20 +62,72 @@ def read_heic(path, filename):
         return path
 
 
-def decodeHEIF(path):
+def decodeHEIF(path, script):
     print("Getting img path")
-    return [
-        read_heic((path + "/" + f), f)
-        for f in listdir(path)
-        if isfile(join(path, f))
-    ]
+    if not script:
+        return [
+            read_heic((path + "/" + f), f)
+            for f in listdir(path)
+            if isfile(join(path, f))
+        ]
+    else:
+        return [
+            {"path": read_heic((path + "/" + f), f), "image_id": f}
+            for f in listdir(path)
+            if isfile(join(path, f)) and ":Zone.Identifier" not in f
+        ]
+
+def scaledResize(img,scale_percent=100):
+    #scale_percent = 60 # percent of original size
+    width = int(img.shape[1] * scale_percent / 100)
+    height = int(img.shape[0] * scale_percent / 100)
+    dim = (width, height)
+  
+    # resize image
+    return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
+def loadCV2Img(images,flag=False,perc=100):
+    print("From path to img")
+    im1 = images[0]
+    if flag:
+        im1["frame"] = scaledResize(cv2.imread(im1["path"],cv2.IMREAD_UNCHANGED),perc)
+    else:
+        im1["frame"] = cv2.imread(im1["path"],cv2.IMREAD_UNCHANGED)
+    h, w = im1["frame"].shape[:2]
+    i = 0
+    j = len(images)
+    timeI = 0
+    fullTime = 0
+    for f in images:
+        if ":Zone.Identifier" not in f:
+            print("(" + str(i+1) + " / " + str(j) + ")", end="\r")
+            start = time.time()
+            timeI = timeI + 1
+            i = i + 1
+            if flag:
+                frame = scaledResize(cv2.imread(f["path"],cv2.IMREAD_UNCHANGED),perc)
+            else:
+                frame = cv2.imread(f["path"],cv2.IMREAD_UNCHANGED)
+            h1, w1 = frame.shape[:2]
+            if w1 > w:
+                w = w1
+            if h1 > h:
+                h = h1
+            # ret.append({"frame":frame, "image_id":((f.split("/original/")[1]).split(".")[0])})
+            f["frame"] = frame
+            fullTime = fullTime + time.time() - start
+
+    print("\n")
+    fullTime = fullTime / timeI
+    print("Time per image Load = " + str(fullTime))
+    return images, w, h
 
 
 def fromPathToCV2Img(pathArr):
     print("From path to img")
     ret = []
     im1 = pathArr.pop(0)
-    ret.append({"frame":cv2.imread(im1), "image_id":im1})
+    ret.append({"frame": cv2.imread(im1), "image_id": im1})
     h, w = ret[0]["frame"].shape[:2]
     i = 0
     j = len(pathArr)
@@ -91,13 +146,14 @@ def fromPathToCV2Img(pathArr):
             if h1 > h:
                 h = h1
             # ret.append({"frame":frame, "image_id":((f.split("/original/")[1]).split(".")[0])})
-            ret.append({"frame":frame, "image_id":f})
+            ret.append({"frame": frame, "image_id": f})
             fullTime = fullTime + time.time() - start
 
     print("\n")
     fullTime = fullTime / timeI
     print("Time per image Load = " + str(fullTime))
     return ret, w, h
+
 
 def loadImagesToSys(file_path, frames, fps, tF, imgF, nImages):
     # file_path, frames, fps, tF, imgF
@@ -115,9 +171,10 @@ def loadImagesToSys(file_path, frames, fps, tF, imgF, nImages):
     # Images resize (we use a filling resise so we dont ruin an image by extending it)
     frames = resize(frames, w, h)
     print("Finish image loading and resizing")
-    return frames,w,h,totalNumberOfFrames
+    return frames, w, h, totalNumberOfFrames
 
-def write_video(file_path,frames, w, h, totalNumberOfFrames, fps, tF, imgF):
+
+def write_video(file_path, frames, w, h, totalNumberOfFrames, fps, tF, imgF):
     fourcc = cv2.VideoWriter_fourcc("m", "p", "4", "v")
     writer = cv2.VideoWriter(file_path, fourcc, fps, (w, h))
 
@@ -133,22 +190,24 @@ def write_video(file_path,frames, w, h, totalNumberOfFrames, fps, tF, imgF):
     for z in range(imgF - 1):
         startF = time.time()
         timeF = timeF + 1
-        print("Frame: (" + str(z+1) + ", " + str(totalNumberOfFrames) + ")", end="\r")
+        print("Frame: (" + str(z+1) + ", " +
+              str(totalNumberOfFrames) + ")", end="\r")
         writer.write(im1["frame"])
         frameTime = frameTime + time.time() - startF
     imgTime = imgTime + time.time() - start
     timeI = timeI + 1
 
-
     # debuging index
     i = z
     for frame in frames:
         # debuging string
-        print("Frame: (" + str(i+1) + ", " + str(totalNumberOfFrames) + ")", end="\r")
+        print("Frame: (" + str(i+1) + ", " +
+              str(totalNumberOfFrames) + ")", end="\r")
         im2 = frame["frame"]
         start = time.time()
         for y in range(tF):
-            print("Frame: (" + str(i+1) + ", " + str(totalNumberOfFrames) + ")", end="\r")
+            print("Frame: (" + str(i+1) + ", " +
+                  str(totalNumberOfFrames) + ")", end="\r")
             startF = time.time()
             timeF = timeF + 1
             i = i + 1
@@ -157,7 +216,8 @@ def write_video(file_path,frames, w, h, totalNumberOfFrames, fps, tF, imgF):
             writer.write(dst)
             frameTime = frameTime + time.time() - startF
         for z in range(imgF):
-            print("Frame: (" + str(i+1) + ", " + str(totalNumberOfFrames) + ")", end="\r")
+            print("Frame: (" + str(i+1) + ", " +
+                  str(totalNumberOfFrames) + ")", end="\r")
             startF = time.time()
             timeF = timeF + 1
             i = i + 1

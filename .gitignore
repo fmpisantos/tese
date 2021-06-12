@@ -1,7 +1,11 @@
 Photos/
+Photos.zip
+bin/
+output/
 *.deb
 include/
 _pycache_
+share/
 # Editors
 .vscode/
 .idea/

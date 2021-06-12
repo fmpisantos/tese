@@ -1,0 +1,13 @@
+NIMA implementation:
+	https://github.com/idealo/image-quality-assessment
+	https://github.com/master/nima/blob/master/nima_test.py
+
+TODO:
+	- Implement clustering of labels
+	- Start to finish ready script
+	- Script where we can choose which algoritms to run
+	- Output files to test the results of the run
+	- Ready repository
+	- Agglomerative Clustering for image quality analysis (aesthetic and tecnical score as features) - With the porposite of testing this method as a do/don't show image
+	- Test parameters / test phase described in preaparation
+	- Start writing
