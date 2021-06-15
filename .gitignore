@@ -9,6 +9,7 @@ share/
 # Editors
 .vscode/
 .idea/
+Scripts/
 
 # Vagrant
 .vagrant/

@@ -1,15 +1,12 @@
 from testClusters import organizeByLabelsAndObjects, testOrganizationByLabelsAndObjects
 import SlideshowMaker as sl
-from os import listdir, path, remove
+from os import path
 import os
 import shutil
 import nima as nima
-import json
-from threading import Thread
-import sys
 import argparse
 from myresize import resize2
-from clustering import groupImages, kerasClustering
+from clustering import groupImages
 import utils as util
 import time
 import visonApi
@@ -112,6 +109,12 @@ def _orderByQuality(images, quality1, quality2=False, percent=0.5):
     images = util.orderList(images, quality2 != False,
                             quality1, quality2, percent)
 
+
+def _nima(images, j, string="aesthetic", model=models[0]):
+    print("Get nima score")
+    with Pool(5) as p:
+        ret = p.map(_calculateNima, images)
+    return ret
 
 def _imageLabelingAndClustering(images, path, j, writeToFile=False):
     print("Vision API labeling")
@@ -267,6 +270,7 @@ if __name__ == "__main__":
     #groups = _imageLabelingAndClustering(images,original,j)
     groups = testOrganizationByLabelsAndObjects()
     totalNumberOfFrames = _getTotalNumberofFrames(tF, imgF, nImages)
+    print(groups)
     images = _selectImagesToDisplay(
         groups, "brisque", "aesthetic", 0.5, nImages/j)
     _generateSlideShow(images, totalNumberOfFrames, tF,

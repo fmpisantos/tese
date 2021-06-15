@@ -88,6 +88,7 @@ def scaledResize(img,scale_percent=100):
 
 def loadCV2Img(images,flag=False,perc=100):
     print("From path to img")
+    print(images)
     im1 = images[0]
     if flag:
         im1["frame"] = scaledResize(cv2.imread(im1["path"],cv2.IMREAD_UNCHANGED),perc)

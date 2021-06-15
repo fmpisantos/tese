@@ -11,3 +11,6 @@ TODO:
 	- Agglomerative Clustering for image quality analysis (aesthetic and tecnical score as features) - With the porposite of testing this method as a do/don't show image
 	- Test parameters / test phase described in preaparation
 	- Start writing
+
+
+Used multiprocess in some cases and multithreading in others explain in document
