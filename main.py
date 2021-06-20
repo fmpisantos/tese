@@ -18,7 +18,6 @@ from multiprocessing import Pool
 # kerasClustering
 # Paths:
 
-
 original = path.abspath("./Photos/original")
 outputPath = path.abspath("./output")
 tecnicalChanged = path.abspath("./Photos/TecnicalChanged")
@@ -92,7 +91,7 @@ def _calculateNima(image, string="aesthetic", model=models[0]):
 
 def _nima(images, j, string="aesthetic", model=models[0]):
     print("Get nima score")
-    with Pool(5) as p:
+    with Pool(6) as p:
         ret = p.map(_calculateNima, images)
     return ret
     # i = 0
@@ -106,20 +105,21 @@ def _nima(images, j, string="aesthetic", model=models[0]):
 
 
 def _orderByQuality(images, quality1, quality2=False, percent=0.5):
-    images = util.orderList(images, quality2 != False,
-                            quality1, quality2, percent)
+    return util.orderList(images, quality2 != False,
+                          quality1, quality2, percent)
 
 
 def _nima(images, j, string="aesthetic", model=models[0]):
     print("Get nima score")
-    with Pool(5) as p:
+    with Pool(6) as p:
         ret = p.map(_calculateNima, images)
     return ret
+
 
 def _imageLabelingAndClustering(images, path, j, writeToFile=False):
     print("Vision API labeling")
     start = time.time()
-    objects, labels = visonApi.defineImageContent(path, images)
+    objects, labels, labeledImages = visonApi.defineImageContent(path, images)
     if writeToFile:
         util.writeToFile(list(objects), f"{outputPath}/objects.json")
         util.writeToFile(list(labels), f"{outputPath}/labels.json")
@@ -127,9 +127,9 @@ def _imageLabelingAndClustering(images, path, j, writeToFile=False):
     print("Image content identification per image: " + str(end/j))
     print("Clustering images based on their content")
     start = time.time()
-    groups = organizeByLabelsAndObjects(objects, labels, images)
+    groups = organizeByLabelsAndObjects(objects, labels, labeledImages)
     end = time.time()-start
-    print("Timr per image grouping: " + str(end/j))
+    print("Time per image grouping: " + str(end/j))
     return groups
 
 
@@ -160,8 +160,8 @@ def _generateSlideShow(images, totalNumberOfFrames, tF, imgF, quality1, quality2
     # Generate slideshow
     sl.write_video(outputPath + "/out.mp4",
                    images[:nImages], w, h, totalNumberOfFrames, fps, tF, imgF)
-    util.writeToFile([{f"{quality1}{((' '+quality2) if quality2 != False else '')}": _getQualityScore(key[quality1], key[quality2], percent), "objects": key["objects-score"], "labels": key["labels-score"], "image_id":key["image_id"],
-                     "imagePath": "file://" + path + "/" + key["image_id"]}for key in images], outputPath+"/"+fileName+".json")
+    util.writeToFile([{f"{quality1}{((' '+quality2) if quality2 != False else '')}": _getQualityScore(key[quality1], key[quality2], percent), "objects": key["objects-score"], "labels": key["labels-score"], "features": key["features"].tolist(), "image_id":key["image_id"],
+                     "imagePath": "file://" + key["path"]}for key in images], outputPath+"/"+fileName+".json")
     print('Saving image quality eval to : ' +
           outputPath+"/"+fileName+".json")
 
@@ -241,7 +241,8 @@ def mainClustering(path, targetdir):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(usage=argparse.SUPPRESS)
+    parser = argparse.ArgumentParser(
+        usage=argparse.SUPPRESS, formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-fps', '--fps', dest='fps', default=fps,
                         help='Frames per sec.', type=int,  required=False)
     parser.add_argument('-is', '--imgSec', dest='imgSec', default=imgSec,
@@ -250,33 +251,61 @@ if __name__ == "__main__":
                         help='Seconds per transiction.', type=int, required=False)
     parser.add_argument('-ni', '--nImage', dest='nImages', default=nImages,
                         help='Number of images to show.', type=int, required=False)
+    parser.add_argument('-a', '--alg', action='append',
+                        help='''Select the algoritms to use from the following list (note: this flag can be omitted to use the recomended algoritms):
+    "brisque" or "b" for tecnical photo assessment
+    "nima" or "n" for aesthetic photo assessment
+    "labeling" or "l" for image label identification
+    "objects" or "o" for objects identification
+    "slideshow" or "s" to create a slideshow''', required=False)
     parser.print_help()
     args = parser.parse_args()
     fps = args.fps
     imgSec = args.imgSec
     tSec = args.tSec
     nImages = args.nImages
+    algs = args.alg
+    if len(algs) > 0:
+        algs = algs[0].strip().split(" ")
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./thesis-312720-c0663e5d4e21.json"
     # Main with nima + brisque -- ordered by brisqye
     # mainNima(models[0], "aesthetic", "brisque", original)
+    runNima = "nima" in args or "n" in args or len(args) == 0
+    runBrisque = "brisque" in args or "b" in args or len(args) == 0
+    runLabels = "labeling" in args or "l" in args or len(args) == 0
+    runObjects = "objects" in args or "o" in args or len(args) == 0
+    runSlideShow = "slideshow" in args or "s" in args or len(args) == 0
     imgF, tF, images, w, h, j = _loadImages(original)
-    images = _brisque(images, j)
-    start = time.time()
-    images = _nima(images, j)
-    end = time.time() - start
-    print("Nima eval per image: " + str(end/j))
-    print("\n")
-    _orderByQuality(images, "brisque", "aesthetic", 0.5)
-    #groups = _imageLabelingAndClustering(images,original,j)
+    if runBrisque:
+        images = _brisque(images, j)
+    if runNima:
+        start = time.time()
+        images = _nima(images, j)
+        end = time.time() - start
+        print("Nima eval per image: " + str(end/j))
+        print("\n")
+    if runNima:
+        if runBrisque:
+            _orderByQuality(images, "brisque", "aesthetic", 0.5)
+        else:
+            _orderByQuality(images, "aesthetic")
+    elif runBrisque:
+        _orderByQuality(images, "brisque")
+    # groups = _imageLabelingAndClustering(images,original,j)
     groups = testOrganizationByLabelsAndObjects()
     totalNumberOfFrames = _getTotalNumberofFrames(tF, imgF, nImages)
-    print(groups)
-    images = _selectImagesToDisplay(
-        groups, "brisque", "aesthetic", 0.5, nImages/j)
-    _generateSlideShow(images, totalNumberOfFrames, tF,
-                       imgF, "brisque", "aesthetic", 0.5)
-    # mainNima(models[0], "aesthetic", "brisque", tecnicalChanged)
-    # Main to test clustering
-    # mainClustering(original,orbOutput)
-
-    # kerasClustering(original,kerasOutput)
+    if runNima:
+        if runBrisque:
+            images = _selectImagesToDisplay(
+                groups, "brisque", "aesthetic", 0.5, nImages/j)
+        else:
+            images = _selectImagesToDisplay(
+                groups, "aesthetic", False, 0.5, nImages/j)
+    elif runBrisque:
+        images = _selectImagesToDisplay(
+            groups, "brisque", False, 0.5, nImages/j)
+    # images = _selectImagesToDisplay(
+    #     groups, "brisque", "aesthetic", 0.5, nImages/j)
+    if runSlideShow:
+        _generateSlideShow(images, totalNumberOfFrames, tF,
+                        imgF, "brisque", "aesthetic", 0.5)

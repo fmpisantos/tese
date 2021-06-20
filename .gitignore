@@ -10,6 +10,7 @@ share/
 .vscode/
 .idea/
 Scripts/
+output/imagesArray.json
 
 # Vagrant
 .vagrant/

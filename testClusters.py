@@ -106,8 +106,8 @@ def groupByLabel(images, labelSet):
         tmpArr = list()
         for img in images:
             if img["group"] == label:
-                tmpArr.append({"brisque": img["brisque"],"aesthetic":img["aesthetic"], "idx": img["idx"], "imagePath": img["imagePath"], "group": img["group"],
-                              "features": np.concatenate((img["objects-score"], img["labels-score"]))})
+                tmpArr.append({"image_id": img["image_id"], "brisque": img["brisque"], "aesthetic": img["aesthetic"], "idx": img["idx"], "path": img["path"], "group": img["group"],
+                              "features": np.concatenate((img["objects-score"], img["labels-score"])), "objects-score": img["objects-score"], "labels-score": img["labels-score"]})
         groups.append(tmpArr)
     return groups
 
@@ -128,8 +128,9 @@ def fromGroupToHtml(groups, path):
         div.append(p)
         p = ET.Element('p')
         for img in group:
-            img = ET.Element('img', attrib={'src': img["imagePath"], "width": "200", "height": "200", "title": "Smile more",
-                             "onclick": f"document.getElementById('imageInfo').innerHTML = {img['brisque']} {img['aesthetic']}"})
+            img = ET.Element('img', attrib={'src': img["path"].replace("/mnt/d","d:"), "width": "200", "height": "200", "title": "Smile more",
+                             "onclick": f"document.getElementById('imageInfo').innerHTML = {np.array2string(img['features'],separator = ' , ')}"})
+            #  {img['brisque']} {img['aesthetic']}"})
             #np.array2string(img['features'],separator = ' , ')
             p.append(img)
         div.append(p)
@@ -157,13 +158,13 @@ def treatFails(groups):
     tmpGroup = list()
     # Preparing data to new cluster
     i = False
-    for idx,group in enumerate(groups):
+    for idx, group in enumerate(groups):
         for img in group:
             if img["group"] == "-1":
                 i = idx
                 test.append(preparedImages[img["idx"]])
                 tmpGroup.append(img)
-                #group.remove(img)
+                # group.remove(img)
             else:
                 train_x.append(preparedImages[img["idx"]])
                 train_y.append(img["group"])
@@ -173,8 +174,17 @@ def treatFails(groups):
 
 
 def organizeByLabelsAndObjects(objects, labels, images):
+    # keysToExclude = ['img']
+    # for img in images:
+    #     for key in img:
+    #         if key in keysToExclude:
+    #             img[key] = ""
+    #         elif isinstance(img[key], np.ndarray):
+    #             img[key] = img[key].tolist()
+    # util.writeToFile(images, f"{outputPath}/imagesArray.json")
     return fromGroupToHtml(treatFails(groupByLabel(images, Optics(
-        prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")
+        prepareDataCombined(list(objects), list(labels), images), images))), f"{outputPath}/optics.html")
+
 
 def testOrganizationByLabelsAndObjects():
     objects, labels, images = loadArrays()
@@ -182,9 +192,9 @@ def testOrganizationByLabelsAndObjects():
         prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")
 
 
-objects, labels, images = loadArrays()
+# objects, labels, images = loadArrays()
 # util.writeToFile(groupByLabel(images,MeanShift(prepareData(objects,"objects",images),images)), f"{outputPath}/meanshift.json")
 # util.writeToFile(groupByLabel(images,DBScan(prepareData(objects,"objects",images),images)), f"{outputPath}/dbscan.json")
 # util.writeToFile(groupByLabel(images,Optics(prepareData(labels,"labels",images),images)), f"{outputPath}/optics.json")
 # fromGroupToHtml(groupByLabel(images,Optics(prepareDataCombined(objects,labels,images),images)),f"{outputPath}/optics-old.html")
-fromGroupToHtml(treatFails(groupByLabel(images, Optics(prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")
+# fromGroupToHtml(treatFails(groupByLabel(images, Optics(prepareDataCombined(objects, labels, images), images))), f"{outputPath}/optics.html")

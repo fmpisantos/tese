@@ -1,5 +1,6 @@
 from os import path
 from google.cloud import vision
+from multiprocessing import Pool
 
 def getImageContent(path,client):
     with open(path, 'rb') as image_file:
@@ -25,19 +26,31 @@ def getImageContent(path,client):
     return objSet, objs, lblSet, lbls
     #return list(set([o.name for o in objects])), list(set([label.description for label in labels]))
 
+def threadImageAnotation(img):
+    client = vision.ImageAnnotatorClient()
+    img["objects"],img["objects-score"], img["labels"], img["labels-score"] = getImageContent(f"{img['path']}",client)
+    img["objects"] = list(set(img["objects"]))
+    img["labels"] = list(set(img["labels"]))
+    return img
+
 def defineImageContent(path, images):
     j = len(images)
-    client = vision.ImageAnnotatorClient()
+    # client = vision.ImageAnnotatorClient()
     labels= set()
     objects= set()
-    for i,img in enumerate(images):
-        print("(" + str(i+1) + " / " + str(j) + ")", end="\r")
-        img["objects"],img["objects-score"], img["labels"], img["labels-score"] = getImageContent(path + "/" + img["image_id"],client)
-        labels |= img["labels"]
-        objects |= img["objects"]
-        img["objects"] = list(img["objects"])
-        img["labels"] = list(img["labels"])
-    return objects, labels
+    with Pool(6) as p:
+        ret = p.map(threadImageAnotation,images)
+    for img in ret:
+        labels = labels.union(set(img["labels"]))
+        objects = objects.union(set(img["objects"]))
+    # for i,img in enumerate(images):
+    #     print("(" + str(i+1) + " / " + str(j) + ")", end="\r")
+    #     img["objects"],img["objects-score"], img["labels"], img["labels-score"] = getImageContent(path + "/" + img["image_id"],client)
+    #     labels |= img["labels"]
+    #     objects |= img["objects"]
+    #     img["objects"] = list(img["objects"])
+    #     img["labels"] = list(img["labels"])
+    return objects, labels, ret
 
 def localize_objects(path):
     """Localize objects in the local image.

@@ -15,6 +15,7 @@ TFS_PORT = 8500
 nimaPath = path.abspath("../image-quality-assessment/")
 aestheticWeigth = "weights_mobilenet_aesthetic_0.07"
 technicalWeigth = "weights_mobilenet_technical_0.11"
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 def classify(aesthetic,path):
     if aesthetic:

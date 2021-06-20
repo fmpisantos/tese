@@ -38,7 +38,7 @@ def score(imgArr):
     return imgArr
 
 def brisqueThread(images):
-    with Pool(5) as p:
+    with Pool(6) as p:
         ret = p.map(scoreSingle, images)
     return ret
 
