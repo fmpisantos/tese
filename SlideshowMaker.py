@@ -1,14 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from os import listdir, path, remove
+from os import listdir, remove
 from os.path import isfile, join
 from PIL import Image
 import cv2
-import numpy as np
-import pyheif
+# import pyheif
 import io
-import exifread
 from myresize import resize
 import time
 
@@ -27,7 +25,7 @@ def generateFramesFromImgTime(img, t, fps):
 
 def read_heic(path, filename):
     metadados = []
-    if path.lower().find(".heic") != -1:
+    """if path.lower().find(".heic") != -1:
         print("Decoding .heic to .jpg (" + filename + ")", end="\r")
         with open(path, "rb") as file:
             newFile = path + "/" + filename.lower().replace(".heic", ".jpg")
@@ -59,7 +57,8 @@ def read_heic(path, filename):
         return newFile
     else:
         # return Image.open(path)
-        return path
+        """
+    return path
 
 
 def decodeHEIF(path, script):
@@ -76,7 +75,7 @@ def decodeHEIF(path, script):
             for f in listdir(path)
             if isfile(join(path, f)) and ":Zone.Identifier" not in f
         ]
-
+ 
 def scaledResize(img,scale_percent=100):
     #scale_percent = 60 # percent of original size
     width = int(img.shape[1] * scale_percent / 100)

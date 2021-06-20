@@ -1,13 +1,10 @@
 import tensorflow.keras as keras
 from iqa.src.utils import utils
 import SlideshowMaker as sl
-from os import listdir, path, remove
+from os import path
 import nima as nima
 import json
 from threading import Thread
-import sys
-import argparse
-from myresize import resize2
 
 # Variables
 #
