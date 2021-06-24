@@ -1,22 +1,40 @@
-How to get Submodules:
-git submodule update --init
-
 How to run: 
 
-0. Install python dependencies
+0. Install python dependencies (only on the first run):
     ```
+    git submodule update --init
     python3 -m venv .
     source bin/activate
     pip install -r requirements.txt
     ```
 1. Start nima docker image (https://github.com/idealo/image-quality-assessment#serving-nima-with-tensorflow-serving):
-    0. To reset docker containers:
+
+    0. To reset docker containers (only if needed):
+        
+        ```Stop all running containers:``` 
+
+            ```
+            docker stop $(docker ps -a -q)
+            ```
+
+        ```Delete all stopped containers:```
+        
+            ```
+            docker rm $(docker ps -a -q)
+            ```
+
+    1. Build the NIMA TFS Docker image 
         ```
-        Stop all running containers: docker stop $(docker ps -a -q)
-        Delete all stopped containers: docker rm $(docker ps -a -q)
+        docker build -t tfs_nima iqa/contrib/tf_serving
         ```
-    1. Build the NIMA TFS Docker image `docker build -t tfs_nima iqa/contrib/tf_serving`
-    2. Run a NIMA TFS container with `docker run -d --name tfs_nima -p 8500:8500 tfs_nima`
+
+    2. Run a NIMA TFS container with 
+        ```
+        docker run -d --name tfs_nima -p 8500:8500 tfs_nima
+        ```
+
+    3. run.sh is a script that runs all this steps from 1.0 to 1.2
+
 2. TF_CPP_MIN_LOG_LEVEL=3 python main.py
     ```
     optional arguments:
@@ -37,6 +55,15 @@ How to run:
     -p PATH, --path PATH  Path to folder holding the photos (default = './Photos/original').
     ```
 3. Example:
+
+    Default:
+
+    ```
+    TF_CPP_MIN_LOG_LEVEL=3 python main.py
+    ```
+
+    With extra parameters:
+
     ```
     TF_CPP_MIN_LOG_LEVEL=3 python main.py -fps 10 -is 1.5 -ts 0 -ni 20 -a "brisque nima labels objects slideshow"
     ```
@@ -54,6 +81,3 @@ How to run:
         ```
         unable to prepare context: path "iqa/contrib/tf_serving\r" not found
         ```
-
-
-https://bitbucket.org/novaphotoapp/imagens_similares/src/master/

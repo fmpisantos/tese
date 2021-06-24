@@ -136,3 +136,5 @@ venv.bak/
 dmypy.json
 
 lib64
+
+main.exe
