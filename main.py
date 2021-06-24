@@ -1,15 +1,15 @@
-from testClusters import organizeByLabelsAndObjects, testOrganizationByLabelsAndObjects
-import SlideshowMaker as sl
+from algoritmos.testClusters import organizeByLabelsAndObjects, testOrganizationByLabelsAndObjects
+import algoritmos.SlideshowMaker as sl
 from os import path
 import os
-import nima as nima
+import algoritmos.nima as nima
 import argparse
-from myresize import resize2
-import utils as util
+from algoritmos.myresize import resize2
+import algoritmos.utils as util
 import time
-import visonApi
+import algoritmos.visonApi as visonApi
 import numpy as np
-import brisque2 as bq
+import algoritmos.brisque2 as bq
 from multiprocessing import Pool
 
 # Variables
@@ -104,10 +104,21 @@ def _getTotalNumberofFrames(tF, imgF, nImages):
 
 def _selectImagesToDisplay(groups, quality1, quality2, percent, ratio):
     images = list()
+    groupQuality = list()
     for group in groups:
         tmp = round(len(groups) * ratio) + 1
         images = np.concatenate((images, group[:tmp]))
+        if quality2 == "aesthetic" or quality1 == "aesthetic":
+            groupQuality.append({'group':group[0]['group'], 'quality': sum(c.nima for c in group[:tmp])/len(group[:tmp])})
     images = _orderByQuality(images, quality1, quality2, percent)
+    if quality2 == "aesthetic" or quality1 == "aesthetic":
+        groupQuality = sorted(groupQuality, key=lambda x: x, reverse=True)
+        returnList = list()
+        for group in groupQuality:
+            for img in images:
+                if img["group"] == group["group"]:
+                    returnList.append(img)
+        return returnList
     return images
 
 
@@ -137,9 +148,9 @@ if __name__ == "__main__":
     parser.add_argument('-fps', '--fps', dest='fps', default=fps,
                         help='Frames per sec.', type=int,  required=False)
     parser.add_argument('-is', '--imgSec', dest='imgSec', default=imgSec,
-                        help='Seconds per image.', type=int, required=False)
+                        help='Seconds per image.', type=float, required=False)
     parser.add_argument('-ts', '--tSec', dest='tSec', default=tSec,
-                        help='Seconds per transiction.', type=int, required=False)
+                        help='Seconds per transiction.', type=float, required=False)
     parser.add_argument('-ni', '--nImage', dest='nImages', default=nImages,
                         help='Number of images to show.', type=int, required=False)
     parser.add_argument('-a', '--alg', action='append',
@@ -149,6 +160,8 @@ if __name__ == "__main__":
     "labels" or "l" for image label identification
     "objects" or "o" for objects identification
     "slideshow" or "s" to create a slideshow''', required=False)
+    parser.add_argument('-p', '--path', dest='path', default=original,
+                        help='Path to folder holding the photos.', type=str, required=False)
     parser.print_help()
     args = parser.parse_args()
     fps = args.fps
@@ -156,6 +169,7 @@ if __name__ == "__main__":
     tSec = args.tSec
     nImages = args.nImages
     algs = args.alg
+    _path = args.path
     if(algs == None):
         algs = list()
     if len(algs) > 0:
@@ -166,7 +180,7 @@ if __name__ == "__main__":
     runLabels = "labels" in algs or "l" in algs or len(algs) == 0
     runObjects = "objects" in algs or "o" in algs or len(algs) == 0
     runSlideShow = "slideshow" in algs or "s" in algs or len(algs) == 0
-    imgF, tF, images, w, h, j = _loadImages(original)
+    imgF, tF, images, w, h, j = _loadImages(_path)
     if runBrisque:
         images = _brisque(images, j)
     if runNima:
@@ -184,7 +198,7 @@ if __name__ == "__main__":
         _orderByQuality(images, "brisque")
     if runObjects or runLabels:
         groups = _imageLabelingAndClustering(
-            images, original, j, getLabels=runLabels, getObjects=runObjects)
+            images, _path, j, getLabels=runLabels, getObjects=runObjects)
     # groups = testOrganizationByLabelsAndObjects()
     totalNumberOfFrames = _getTotalNumberofFrames(tF, imgF, nImages)
     if runNima:

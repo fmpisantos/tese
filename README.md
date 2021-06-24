@@ -1,9 +1,6 @@
 How to get Submodules:
 git submodule update --init
 
-Start docker on wsl ?
-sudo dockerd
-
 How to run: 
 0. To reset docker containers:
    ```
@@ -14,18 +11,32 @@ How to run:
 2. Run a NIMA TFS container with `docker run -d --name tfs_nima -p 8500:8500 tfs_nima`
 3. Install python dependencies
     ```
-    virtualenv -p python3 .
+    python3 -m venv .
     source bin/activate
     pip install -r requirements.txt
     ```
-4. python3 main.py
+4. python main.py
     ```
     optional arguments:
-    -h, --help              Show this help message and exit
-    -fps FPS, --fps FPS     Frames per sec.
-    -is IMGSEC, --imgSec    IMGSEC Seconds per image.
-    -ts TSEC, --tSec TSEC   Seconds per transiction.
-    -ni NIMAGES, --nImage   NIMAGES Number of images to show.
+    -h, --help            show this help message and exit
+    -fps FPS, --fps FPS   Frames per sec (default = 15).
+    -is IMGSEC, --imgSec IMGSEC
+                            Seconds per image (default = 1).
+    -ts TSEC, --tSec TSEC
+                            Seconds per transiction (default = 0.5).
+    -ni NIMAGES, --nImage NIMAGES
+                            Number of images to show (default = 15).
+    -a ALG, --alg ALG     Select the algoritms to use from the following list (note: this flag can be omitted to use the recomended algoritms): (default = [] -> Runs all algoritms)
+                                "brisque" or "b" for tecnical photo assessment
+                                "nima" or "n" for aesthetic photo assessment
+                                "labels" or "l" for image label identification
+                                "objects" or "o" for objects identification
+                                "slideshow" or "s" to create a slideshow
+    -p PATH, --path PATH  Path to folder holding the photos (default = './Photos/original').
+    ```
+5. Example:
+    ```
+    python main.py -fps 10 -is 1.5 -ts 0 -ni 20 -a "brisque nima labels objects slideshow"
     ```
 
 https://bitbucket.org/novaphotoapp/imagens_similares/src/master/
