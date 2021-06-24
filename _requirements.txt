@@ -8,14 +8,15 @@ cycler==0.10.0
 decorator==4.4.2
 ExifRead==2.3.2
 flatbuffers==1.12
-gast
+gast==0.3.3
 google-api-core==1.26.3
 google-auth==1.28.0
 google-auth-oauthlib==0.4.4
 google-cloud-vision==2.3.1
 google-pasta==0.2.0
 googleapis-common-protos==1.53.0
-h5py
+#grpcio==1.32.0
+h5py==2.10.0
 idna==2.10
 image-quality==1.2.7
 imageio==2.9.0
@@ -40,6 +41,7 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pybrisque==1.0
 pycparser==2.20
+#pyheif==0.5.1
 pyparsing==2.4.7
 pyping==0.0.6
 python-dateutil==2.8.1
