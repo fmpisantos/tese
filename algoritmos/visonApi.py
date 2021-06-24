@@ -16,8 +16,7 @@ def getImageContent(path, client, getLabels=True, getObjects=True):
         if o.name not in objSet:
             objs.append(f"{o.name} - {o.score}")
             objSet.add(o.name)
-    response = client.label_detection(image=image)
-    labels = response.label_annotations
+    labels = client.label_detection(image=image).label_annotations
     lblSet = set()
     lbls = []
     for l in labels:
@@ -56,7 +55,7 @@ def threadImageObjects(img):
 def _defineImageContent(path, images, getLabels=True, getObjects=True):
     import threading
     j = len(images)
-    # client = vision.ImageAnnotatorClient()
+    client = vision.ImageAnnotatorClient()
     labels = set()
     objects = set()
     threads = list()

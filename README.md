@@ -2,20 +2,22 @@ How to get Submodules:
 git submodule update --init
 
 How to run: 
-0. To reset docker containers:
-   ```
-   Stop all running containers: docker stop $(docker ps -a -q)
-   Delete all stopped containers: docker rm $(docker ps -a -q)
-   ```
-1. Build the NIMA TFS Docker image `docker build -t tfs_nima iqa/contrib/tf_serving`
-2. Run a NIMA TFS container with `docker run -d --name tfs_nima -p 8500:8500 tfs_nima`
-3. Install python dependencies
+
+0. Install python dependencies
     ```
     python3 -m venv .
     source bin/activate
     pip install -r requirements.txt
     ```
-4. python main.py
+1. Start nima docker image (https://github.com/idealo/image-quality-assessment#serving-nima-with-tensorflow-serving):
+    0. To reset docker containers:
+        ```
+        Stop all running containers: docker stop $(docker ps -a -q)
+        Delete all stopped containers: docker rm $(docker ps -a -q)
+        ```
+    1. Build the NIMA TFS Docker image `docker build -t tfs_nima iqa/contrib/tf_serving`
+    2. Run a NIMA TFS container with `docker run -d --name tfs_nima -p 8500:8500 tfs_nima`
+2. TF_CPP_MIN_LOG_LEVEL=3 python main.py
     ```
     optional arguments:
     -h, --help            show this help message and exit
@@ -34,9 +36,24 @@ How to run:
                                 "slideshow" or "s" to create a slideshow
     -p PATH, --path PATH  Path to folder holding the photos (default = './Photos/original').
     ```
-5. Example:
+3. Example:
     ```
-    python main.py -fps 10 -is 1.5 -ts 0 -ni 20 -a "brisque nima labels objects slideshow"
+    TF_CPP_MIN_LOG_LEVEL=3 python main.py -fps 10 -is 1.5 -ts 0 -ni 20 -a "brisque nima labels objects slideshow"
     ```
+
+4. Known errors and solutions:
+    1. Nima(iqa) docker image not running:
+        ```
+        Reason: 'TypeError("cannot pickle '_thread.RLock' object")'
+        ```
+    2. Multithreading image labeling not working on windows:
+        ```
+        ReferenceError: weakly-referenced object no longer exists
+        ```
+    3. Running dos2unix ./run.sh:
+        ```
+        unable to prepare context: path "iqa/contrib/tf_serving\r" not found
+        ```
+
 
 https://bitbucket.org/novaphotoapp/imagens_similares/src/master/

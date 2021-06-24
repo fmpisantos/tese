@@ -11,7 +11,30 @@ import algoritmos.visonApi as visonApi
 import numpy as np
 import algoritmos.brisque2 as bq
 from multiprocessing import Pool
+import warnings
+warnings.simplefilter("ignore")
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+import sys
 
+class Logger(object):
+    def __init__(self):
+        self.terminal = sys.stdout
+        from datetime import datetime
+
+        now = datetime.now() # current date and time
+        self.log = open(f"./logs/LOG_{now.strftime('%m_%d_%Y_%H_%M_%S')}.log", "a")
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)  
+
+    def flush(self):
+        #this flush method is needed for python 3 compatibility.
+        #this handles the flush command by doing nothing.
+        #you might want to specify some extra behavior here.
+        pass    
+
+sys.stdout = Logger()
 # Variables
 # kerasClustering
 # Paths:
@@ -140,6 +163,8 @@ def _generateSlideShow(images, totalNumberOfFrames, tF, imgF, quality1, quality2
                      "imagePath": "file://" + key["path"]}for key in images], outputPath+"/"+fileName+".json")
     print('Saving image quality eval to : ' +
           outputPath+"/"+fileName+".json")
+    print('Saving .mp4 slideshow to : ' +
+        outputPath + "/out.mp4")
 
 
 if __name__ == "__main__":
