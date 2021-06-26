@@ -23,14 +23,14 @@ joblib==1.0.1
 Keras==2.4.3
 Keras-Preprocessing==1.1.2
 kiwisolver==1.3.1
-libsvm==3.23.0.4
+# libsvm
 Markdown==3.3.4
-matplotlib==3.4.1
+matplotlib
 networkx==2.5.1
 numpy==1.19.5
 oauthlib==3.1.0
-opencv-contrib-python==4.5.1.48
-opencv-python==4.5.1.48
+opencv-contrib-python
+opencv-python
 opt-einsum==3.3.0
 packaging==20.9
 Pillow==8.2.0
@@ -49,9 +49,9 @@ PyYAML==5.4.1
 requests==2.25.1
 requests-oauthlib==1.3.0
 rsa==4.7.2
-scikit-image==0.18.1
+scikit-image
 scikit-learn==0.24.1
-scipy==1.6.2
+scipy
 six==1.15.0
 tensorboard-plugin-wit
 tensorflow
@@ -59,7 +59,7 @@ tensorflow-estimator
 tensorflow-serving-api
 termcolor==1.1.0
 threadpoolctl==2.1.0
-tifffile==2021.4.8
+tifffile
 tqdm==4.60.0
 typing-extensions==3.7.4.3
 urllib3==1.26.4
