@@ -1,3 +1,4 @@
+import sys
 from algoritmos.testClusters import organizeByLabelsAndObjects, testOrganizationByLabelsAndObjects
 import algoritmos.SlideshowMaker as sl
 from os import path
@@ -13,26 +14,28 @@ import algoritmos.brisque2 as bq
 from multiprocessing import Pool
 import warnings
 warnings.simplefilter("ignore")
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-import sys
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
         from datetime import datetime
 
-        now = datetime.now() # current date and time
-        self.log = open(f"./logs/LOG_{now.strftime('%m_%d_%Y_%H_%M_%S')}.log", "a")
+        now = datetime.now()  # current date and time
+        self.log = open(
+            f"./logs/LOG_{now.strftime('%m_%d_%Y_%H_%M_%S')}.log", "a")
 
     def write(self, message):
         self.terminal.write(message)
-        self.log.write(message)  
+        self.log.write(message)
 
     def flush(self):
-        #this flush method is needed for python 3 compatibility.
-        #this handles the flush command by doing nothing.
-        #you might want to specify some extra behavior here.
-        pass    
+        # this flush method is needed for python 3 compatibility.
+        # this handles the flush command by doing nothing.
+        # you might want to specify some extra behavior here.
+        pass
+
 
 sys.stdout = Logger()
 # Variables
@@ -58,6 +61,7 @@ imgSec = 1
 tSec = 0.5
 nImages = 15
 models = ['mobilenet_aesthetic', 'mobilenet_technical']
+percent= 0.5
 
 
 def _loadImages(path):
@@ -91,7 +95,7 @@ def _nima(images):
     return ret
 
 
-def _orderByQuality(images, quality1, quality2=False, percent=0.5):
+def _orderByQuality(images, quality1, quality2=False, percent=percent):
     return util.orderList(images, quality2 != False,
                           quality1, quality2, percent)
 
@@ -132,10 +136,12 @@ def _selectImagesToDisplay(groups, quality1, quality2, percent, ratio):
         tmp = round(len(groups) * ratio) + 1
         images = np.concatenate((images, group[:tmp]))
         if quality2 == "aesthetic" or quality1 == "aesthetic":
-            groupQuality.append({'group':group[0]['group'], 'quality': sum(c['aesthetic'] for c in group[:tmp])/len(group[:tmp])})
+            groupQuality.append({'group': group[0]['group'], 'quality': sum(
+                c['aesthetic'] for c in group[:tmp])/len(group[:tmp])})
     images = _orderByQuality(images, quality1, quality2, percent)
     if quality2 == "aesthetic" or quality1 == "aesthetic":
-        groupQuality = sorted(groupQuality, key=lambda x: x['quality'], reverse=True)
+        groupQuality = sorted(
+            groupQuality, key=lambda x: x['quality'], reverse=True)
         returnList = list()
         for group in groupQuality:
             for img in images:
@@ -152,7 +158,7 @@ def _getQualityScore(q1, q2, p):
         return q1
 
 
-def _generateSlideShow(images, totalNumberOfFrames, tF, imgF, quality1, quality2=False, percent=0.5, fileName="output"):
+def _generateSlideShow(images, totalNumberOfFrames, tF, imgF, quality1, quality2=False, percent=percent, fileName="output"):
     # Get images for slideshow
     images, w, h = sl.loadCV2Img(images)
     images = resize2(images, w, h)
@@ -164,29 +170,31 @@ def _generateSlideShow(images, totalNumberOfFrames, tF, imgF, quality1, quality2
     print('Saving image quality eval to : ' +
           outputPath+"/"+fileName+".json")
     print('Saving .mp4 slideshow to : ' +
-        outputPath + "/out.mp4")
+          outputPath + "/out.mp4")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         usage=argparse.SUPPRESS, formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-fps', '--fps', dest='fps', default=fps,
-                        help='Frames per sec.', type=int,  required=False)
+                        help='Frames per sec (default = 15).', type=int,  required=False)
     parser.add_argument('-is', '--imgSec', dest='imgSec', default=imgSec,
-                        help='Seconds per image.', type=float, required=False)
+                        help='Seconds per image (default = 1).', type=float, required=False)
     parser.add_argument('-ts', '--tSec', dest='tSec', default=tSec,
-                        help='Seconds per transiction.', type=float, required=False)
+                        help='Seconds per transiction (default = 0.5).', type=float, required=False)
     parser.add_argument('-ni', '--nImage', dest='nImages', default=nImages,
-                        help='Number of images to show.', type=int, required=False)
-    parser.add_argument('-a', '--alg', action='append',
-                        help='''Select the algoritms to use from the following list (note: this flag can be omitted to use the recomended algoritms):
+                        help='Number of images to show (default = 15).', type=int, required=False)
+    parser.add_argument('-qp', '--qualityPercent', dest='qualityPercent', default=percent,
+                        help='Percentage associated with the tecnical quality of every photo (used in the balancing between technical and aesthetic quality) 0-1', type=float, required=False)
+    parser.add_argument('--a', '--alg', action='append', dest='alg', default=[],
+                        help='''Select the algoritms to use from the following list (note: this flag can be omitted to use the recomended algoritms): (default Runs all algoritms)
     "brisque" or "b" for tecnical photo assessment
     "nima" or "n" for aesthetic photo assessment
     "labels" or "l" for image label identification
     "objects" or "o" for objects identification
     "slideshow" or "s" to create a slideshow''', required=False)
     parser.add_argument('-p', '--path', dest='path', default=original,
-                        help='Path to folder holding the photos.', type=str, required=False)
+                        help="Path to folder holding the photos (default = './Photos/original').", type=str, required=False)
     parser.print_help()
     args = parser.parse_args()
     fps = args.fps
@@ -195,6 +203,7 @@ if __name__ == "__main__":
     nImages = args.nImages
     algs = args.alg
     _path = args.path
+    percent = args.qualityPercent
     if(algs == None):
         algs = list()
     if len(algs) > 0:
@@ -216,7 +225,7 @@ if __name__ == "__main__":
         print("\n")
     if runNima:
         if runBrisque:
-            _orderByQuality(images, "brisque", "aesthetic", 0.5)
+            _orderByQuality(images, "brisque", "aesthetic", percent)
         else:
             _orderByQuality(images, "aesthetic")
     elif runBrisque:
@@ -229,15 +238,15 @@ if __name__ == "__main__":
     if runNima:
         if runBrisque:
             images = _selectImagesToDisplay(
-                groups, "brisque", "aesthetic", 0.5, nImages/j)
+                groups, "brisque", "aesthetic", percent, nImages/j)
         else:
             images = _selectImagesToDisplay(
-                groups, "aesthetic", False, 0.5, nImages/j)
+                groups, "aesthetic", False, percent, nImages/j)
     elif runBrisque:
         images = _selectImagesToDisplay(
-            groups, "brisque", False, 0.5, nImages/j)
+            groups, "brisque", False, percent, nImages/j)
     # images = _selectImagesToDisplay(
-    #     groups, "brisque", "aesthetic", 0.5, nImages/j)
+    #     groups, "brisque", "aesthetic", percent, nImages/j)
     if runSlideShow:
         _generateSlideShow(images, totalNumberOfFrames, tF,
-                           imgF, "brisque", "aesthetic", 0.5)
+                           imgF, "brisque", "aesthetic", percent)
