@@ -177,24 +177,24 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         usage=argparse.SUPPRESS, formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-fps', '--fps', dest='fps', default=fps,
-                        help='Frames per sec.', type=int,  required=False)
+                        help='Frames per sec (default = 15).', type=int,  required=False)
     parser.add_argument('-is', '--imgSec', dest='imgSec', default=imgSec,
-                        help='Seconds per image.', type=float, required=False)
+                        help='Seconds per image (default = 1).', type=float, required=False)
     parser.add_argument('-ts', '--tSec', dest='tSec', default=tSec,
-                        help='Seconds per transiction.', type=float, required=False)
+                        help='Seconds per transiction (default = 0.5).', type=float, required=False)
     parser.add_argument('-ni', '--nImage', dest='nImages', default=nImages,
-                        help='Number of images to show.', type=int, required=False)
-    parser.add_argument('-qp', '--qualityPercent', dest='qualityPerdent', default=percent,
-                        help='Percentage associated with the tecnical quality of every photo (used in the balancing between technical and aesthetic quality)', type=int, required=False)
-    parser.add_argument('--a', '--alg', action='append',
-                        help='''Select the algoritms to use from the following list (note: this flag can be omitted to use the recomended algoritms):
+                        help='Number of images to show (default = 15).', type=int, required=False)
+    parser.add_argument('-qp', '--qualityPercent', dest='qualityPercent', default=percent,
+                        help='Percentage associated with the tecnical quality of every photo (used in the balancing between technical and aesthetic quality) 0-1', type=float, required=False)
+    parser.add_argument('--a', '--alg', action='append', dest='alg', default=[],
+                        help='''Select the algoritms to use from the following list (note: this flag can be omitted to use the recomended algoritms): (default Runs all algoritms)
     "brisque" or "b" for tecnical photo assessment
     "nima" or "n" for aesthetic photo assessment
     "labels" or "l" for image label identification
     "objects" or "o" for objects identification
     "slideshow" or "s" to create a slideshow''', required=False)
     parser.add_argument('-p', '--path', dest='path', default=original,
-                        help='Path to folder holding the photos.', type=str, required=False)
+                        help="Path to folder holding the photos (default = './Photos/original').", type=str, required=False)
     parser.print_help()
     args = parser.parse_args()
     fps = args.fps
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     nImages = args.nImages
     algs = args.alg
     _path = args.path
-    percent = args.qualityPerdent
+    percent = args.qualityPercent
     if(algs == None):
         algs = list()
     if len(algs) > 0:
